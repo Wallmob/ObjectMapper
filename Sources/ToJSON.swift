@@ -96,6 +96,8 @@ internal final class ToJSON {
 	class func optionalBasicType<N>(_ field: N?, map: Map) {
 		if let field = field {
 			basicType(field, map: map)
+		} else if map.mapNilToNull {
+			setValue(NSNull(), map: map)
 		}
 	}
 
@@ -108,6 +110,8 @@ internal final class ToJSON {
 	class func optionalObject<N: BaseMappable>(_ field: N?, map: Map) {
 		if let field = field {
 			object(field, map: map)
+		} else if map.mapNilToNull {
+			setValue(NSNull(), map: map)
 		}
 	}
 
@@ -120,6 +124,8 @@ internal final class ToJSON {
 	class func optionalObjectArray<N: BaseMappable>(_ field: Array<N>?, map: Map) {
 		if let field = field {
 			objectArray(field, map: map)
+		} else if map.mapNilToNull {
+			setValue(NSNull(), map: map)
 		}
 	}
 	
@@ -135,6 +141,8 @@ internal final class ToJSON {
 	class func optionalTwoDimensionalObjectArray<N: BaseMappable>(_ field: Array<Array<N>>?, map: Map) {
 		if let field = field {
 			twoDimensionalObjectArray(field, map: map)
+		} else if map.mapNilToNull {
+			setValue(NSNull(), map: map)
 		}
 	}
 	
@@ -147,6 +155,8 @@ internal final class ToJSON {
 	class func optionalObjectSet<N: BaseMappable>(_ field: Set<N>?, map: Map) where N: Hashable {
 		if let field = field {
 			objectSet(field, map: map)
+		} else if map.mapNilToNull {
+			setValue(NSNull(), map: map)
 		}
 	}
 	
@@ -159,6 +169,8 @@ internal final class ToJSON {
 	class func optionalObjectDictionary<N: BaseMappable>(_ field: Dictionary<String, N>?, map: Map) {
         if let field = field {
 			objectDictionary(field, map: map)
+		} else if map.mapNilToNull {
+			setValue(NSNull(), map: map)
         }
     }
 	
@@ -171,6 +183,8 @@ internal final class ToJSON {
 	class func optionalObjectDictionaryOfArrays<N: BaseMappable>(_ field: Dictionary<String, [N]>?, map: Map) {
 		if let field = field {
 			objectDictionaryOfArrays(field, map: map)
+		} else if map.mapNilToNull {
+			setValue(NSNull(), map: map)
 		}
 	}
 }

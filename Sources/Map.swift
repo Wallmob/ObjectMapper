@@ -37,6 +37,8 @@ public protocol MapContext {
 /// A class used for holding mapping data
 public final class Map {
 	public let mappingType: MappingType
+
+	internal let mapNilToNull: Bool
 	
 	public internal(set) var JSON: [String: Any] = [:]
 	public internal(set) var isKeyPresent = false
@@ -48,11 +50,12 @@ public final class Map {
 	
 	let toObject: Bool // indicates whether the mapping is being applied to an existing object
 	
-	public init(mappingType: MappingType, JSON: [String: Any], toObject: Bool = false, context: MapContext? = nil) {
+	public init(mappingType: MappingType, JSON: [String: Any], toObject: Bool = false, context: MapContext? = nil, mapNilToNull: Bool) {
 		self.mappingType = mappingType
 		self.JSON = JSON
 		self.toObject = toObject
 		self.context = context
+		self.mapNilToNull = mapNilToNull
 	}
 	
 	/// Sets the current mapper value and key.
